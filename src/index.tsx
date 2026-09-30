@@ -37,6 +37,27 @@ if (!Handlebars.helpers['join']) {
   });
 }
 
+const comparisonHelpers: Record<string, (a: any, b: any) => boolean> = {
+  eq: (a, b) => a === b,
+  ne: (a, b) => a !== b,
+  gt: (a, b) => a > b,
+  gte: (a, b) => a >= b,
+  lt: (a, b) => a < b,
+  lte: (a, b) => a <= b,
+};
+
+for (const [name, compare] of Object.entries(comparisonHelpers)) {
+  if (Handlebars.helpers[name]) {
+    continue;
+  }
+  Handlebars.registerHelper(name, function (this: any, a: any, b: any, options: any) {
+    if (typeof options === 'object' && options && typeof options.fn === 'function') {
+      return compare(a, b) ? options.fn(this) : options.inverse(this);
+    }
+    return compare(a, b);
+  });
+}
+
 // --- Core Logic Functions (ported from original index.ts) ---
 
 // --- Main Application Entry ---
