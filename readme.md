@@ -1,5 +1,7 @@
 # SillyTavern xUtils
 
+**Note**: I forked this to add Handlebars comparison operator helpers. As of 2026-10-21 it appears the upstreme repo has been removed along with the maintaners account.
+
 ## Overview
 
 A [SillyTavern](https://docs.sillytavern.app/) extension that helps you track your chat stats with LLMs using [connection profiles](https://docs.sillytavern.app/usage/core-concepts/connection-profiles/).
